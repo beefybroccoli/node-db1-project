@@ -4,8 +4,8 @@ const getAll = async () => {
   return await db("accounts").select("*");
 }
 
-const getById = id => {
-  // DO YOUR MAGIC
+const getById = async (id) => {
+  return await db("accounts").select("*").where("id", id);
 }
 
 const create = account => {
