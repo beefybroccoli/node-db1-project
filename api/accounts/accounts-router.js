@@ -11,8 +11,8 @@ router.get('/:id', middleware.checkAccountId, (req, res, next) => {
   res.status(200).json(req.account);
 })
 
-router.post('/', (req, res, next) => {
-  res.status(201).json({message:"reached POST /"});
+router.post('/', middleware.checkAccountPayload, middleware.checkAccountNameUnique, (req, res, next) => {
+  res.status(201).json(req.newAccount);
 })
 
 router.put('/:id', (req, res, next) => {

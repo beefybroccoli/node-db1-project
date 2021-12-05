@@ -4,12 +4,12 @@ const getAll = async () => {
   return await db("accounts").select("*");
 }
 
-const getById = async (id) => {
+const getById = async id => {
   return await db("accounts").select("*").where("id", id);
 }
 
-const create = account => {
-  // DO YOUR MAGIC
+const create = async account => {
+  return await db("accounts").insert(account);
 }
 
 const updateById = (id, account) => {
