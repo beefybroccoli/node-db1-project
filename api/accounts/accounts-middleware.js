@@ -33,7 +33,7 @@ exports.checkAccountPayload = (req, res, next) => {
 exports.checkAccountNameUnique = async (req, res, next) => {
   try{
     const {name, budget} = req.body;
-    const account_id = await modelAccounts.create({name, budget});
+    const account_id = await modelAccounts.create({name:name.trim(), budget});
     const newAccount = await modelAccounts.getById(account_id);
     req.newAccount = newAccount[0];
     console.log("req.newAccount = ", req.newAccount);
