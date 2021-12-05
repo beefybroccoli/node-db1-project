@@ -12,8 +12,8 @@ const create = async account => {
   return await db("accounts").insert(account);
 }
 
-const updateById = (id, account) => {
-  return null;
+const updateById = async (id, account) => {
+  return await db("accounts").where("id", id).update(account);
 }
 
 const deleteById = async id => {

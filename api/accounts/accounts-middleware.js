@@ -23,6 +23,7 @@ exports.checkAccountPayload = (req, res, next) => {
   else if ( budget < 0 || budget > 1e6){
     res.status(400).json({ message: "budget of account is too large or too small" });
   }else{
+    req.modifiedAccount = {name:name.trim(),budget};
     next();
   }
 }

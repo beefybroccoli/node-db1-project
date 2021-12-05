@@ -15,8 +15,14 @@ router.post('/', middleware.checkAccountPayload, middleware.checkAccountNameUniq
   res.status(201).json(req.newAccount);
 })
 
-router.put('/:id', (req, res, next) => {
-  res.status(201).json({message:"reached PUT /:id"});
+router.put('/:id', middleware.checkAccountId, middleware.checkAccountPayload, async (req, res, next) => {
+  try{
+    const account_id = await model.updateById(req.params.id, req.modifiedAccount);
+    const modifiedAccount = await model.getById(account_id);
+    res.status(200).json(modifiedAccount[0]);
+  }catch(err){
+    next(err);
+  }
 });
 
 router.delete('/:id', middleware.checkAccountId, async (req, res, next) => {
