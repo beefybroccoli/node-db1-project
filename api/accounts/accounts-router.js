@@ -19,8 +19,14 @@ router.put('/:id', (req, res, next) => {
   res.status(201).json({message:"reached PUT /:id"});
 });
 
-router.delete('/:id', (req, res, next) => {
-  res.status(200).json({message:"reached DELETE /:id"});
+router.delete('/:id', middleware.checkAccountId, async (req, res, next) => {
+  try{
+    const result = await model.deleteById(req.params.id);
+    res.status(201).json(`deleted account ${req.params.id}`);
+  }catch(err){
+    next(err);
+  }
+  
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line
