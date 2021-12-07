@@ -3,28 +3,12 @@ const modelAccounts = require("./accounts-model");
 exports.checkAccountPayload = (req, res, next) => {
   const {name, budget} = req.body;
   // - If either name or budget are undefined, return `{ message: "name and budget are required" }`
-  if(name === null || name === undefined || budget === null || budget === undefined ){
+  if(name === undefined  || budget === undefined ){
     console.log("typeof name = ", typeof name, ", ", "typeof budget = ", typeof budget, ", budget = ", budget);
     res.status(400).json({ message: "name and budget are required" });
   }
-  // if(name === null){
-  //   // console.log("typeof name = ", typeof name);
-  //   res.status(400).json({ message: "name and budget are required, case 1"});
-  // }
-  // else if(name === undefined){
-  //   // console.log("typeof name = ", typeof name);
-  //   res.status(400).json({ message: "name and budget are required, case 2" });
-  // }
-  // else if(budget === null){
-  //   console.log("typeof budget = ", typeof budget, ", ", budget);
-  //   res.status(400).json({ message: "name and budget are required, case 3" });
-  // }
-  // else if(budget === undefined ){
-  //   // console.log("typeof budget = ", typeof budget);
-  //   res.status(400).json({ message: "name and budget are required, case 4" });
-  // }
-  //   - If name is not a string, return `{ message: "name of account must be a string" }`
-  else if (typeof name !== "string"){
+    //   - If name is not a string, return `{ message: "name of account must be a string" }`
+  else if (typeof name !== "string" || name === null ){
     res.status(400).json({ message: "name of account must be a string" });
   }
   //   - If the _trimmed_ name is shorter than 3 or longer than 100, return `{ message: "name of account must be between 3 and 100" }`
@@ -32,7 +16,7 @@ exports.checkAccountPayload = (req, res, next) => {
     res.status(400).json({ message: "name of account must be between 3 and 100" });
   }
   //   - If budget is not a number, return `{ message: "budget of account must be a number" }`
-  else if (typeof budget !== "number"){
+  else if (typeof budget !== "number" || budget === null){
     res.status(400).json({ message: "budget of account must be a number" });
   }
   //   - If budget is a negative number or over one million, return  `{ message: "budget of account is too large or too small" }`
