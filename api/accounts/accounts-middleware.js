@@ -24,7 +24,7 @@ exports.checkAccountPayload = (req, res, next) => {
   //   res.status(400).json({ message: "name and budget are required, case 4" });
   // }
   //   - If name is not a string, return `{ message: "name of account must be a string" }`
-  else if (typeof(name) !== "string"){
+  else if (typeof name !== "string"){
     res.status(400).json({ message: "name of account must be a string" });
   }
   //   - If the _trimmed_ name is shorter than 3 or longer than 100, return `{ message: "name of account must be between 3 and 100" }`
