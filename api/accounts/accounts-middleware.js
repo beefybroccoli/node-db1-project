@@ -3,27 +3,25 @@ const modelAccounts = require("./accounts-model");
 exports.checkAccountPayload = (req, res, next) => {
   const {name, budget} = req.body;
   // - If either name or budget are undefined, return `{ message: "name and budget are required" }`
-  if(false){
-  // if(name === null || name === undefined || budget === null || budget === undefined ){
-    console.log("typeof name = ", typeof name, ", ", "typeof budget = ", typeof budget);
+  if(name === null || name === undefined || budget === null || budget === undefined ){
     res.status(400).json({ message: "name and budget are required" });
   }
-  else if(name === null){
-    // console.log("typeof name = ", typeof name);
-    res.status(400).json({ message: "name and budget are required, case 1"});
-  }
-  else if(name === undefined){
-    // console.log("typeof name = ", typeof name);
-    res.status(400).json({ message: "name and budget are required, case 2" });
-  }
-  else if(budget === null){
-    console.log("typeof budget = ", typeof budget, ", ", budget);
-    res.status(400).json({ message: "name and budget are required, case 3" });
-  }
-  else if(budget === undefined ){
-    // console.log("typeof budget = ", typeof budget);
-    res.status(400).json({ message: "name and budget are required, case 4" });
-  }
+  // if(name === null){
+  //   // console.log("typeof name = ", typeof name);
+  //   res.status(400).json({ message: "name and budget are required, case 1"});
+  // }
+  // else if(name === undefined){
+  //   // console.log("typeof name = ", typeof name);
+  //   res.status(400).json({ message: "name and budget are required, case 2" });
+  // }
+  // else if(budget === null){
+  //   console.log("typeof budget = ", typeof budget, ", ", budget);
+  //   res.status(400).json({ message: "name and budget are required, case 3" });
+  // }
+  // else if(budget === undefined ){
+  //   // console.log("typeof budget = ", typeof budget);
+  //   res.status(400).json({ message: "name and budget are required, case 4" });
+  // }
   //   - If name is not a string, return `{ message: "name of account must be a string" }`
   else if (typeof(name) !== "string"){
     res.status(400).json({ message: "name of account must be a string" });
