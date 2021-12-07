@@ -4,7 +4,7 @@ exports.checkAccountPayload = (req, res, next) => {
   const {name, budget} = req.body;
   // - If either name or budget are undefined, return `{ message: "name and budget are required" }`
   if(name === undefined  || budget === undefined ){
-    console.log("typeof name = ", typeof name, ", ", "typeof budget = ", typeof budget, ", budget = ", budget);
+    // console.log("typeof name = ", typeof name, ", ", "typeof budget = ", typeof budget, ", budget = ", budget);
     res.status(400).json({ message: "name and budget are required" });
   }
     //   - If name is not a string, return `{ message: "name of account must be a string" }`
